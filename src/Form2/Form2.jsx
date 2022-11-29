@@ -45,9 +45,19 @@ export const Form2 = () => {
           className={_.input}
           id='password'          
           type='password'
-          {...register('password')}
+          {...register('password', {
+            required: {
+              value: true,
+              message: 'введите пароль'
+            },
+            pattern:{
+              value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^\w\s]).{6,}/,
+              message: 'введите пароль (6 символов, строчная и прописаная буква, цифра и спецсимвол)'
+            }
+          })}
+          aria-invalid={!!errors.password}
         />
-        <p className={_.error}>Сообщение об ошибке</p>
+        {errors.password && <p className={_.error}>{errors.password.message}</p>}
       </div>
       <div className={_.wrapCheckbox}>
         <input className={_.checkbox} 
