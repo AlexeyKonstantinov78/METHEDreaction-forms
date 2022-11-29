@@ -10,6 +10,7 @@ export const Form = () => {
   const [passwordDitryError, setPasswordDitryError] = useState(false);
   const [checkErrorForm, setCheckErrorForm] = useState(false);
   const [save, setSave] = useState(false);
+  const [isPending, setIsPending] = useState(false);
   
 
   const validEmail = (value) => {
@@ -38,6 +39,7 @@ export const Form = () => {
       return;
     }
 
+    setIsPending(true);
     console.log({
       email, 
       password, 
@@ -64,7 +66,9 @@ export const Form = () => {
           onChange={handleEmail}
           onBlur={() => {
             setEmailDitry(true);
-            }} />
+            }} 
+          disabled={isPending}
+            />
         {!emailError && emailDitry && <p className={_.error}>Сообщение об ошибке</p>}
       </div>
       <div className={_.wrap}>
@@ -81,6 +85,7 @@ export const Form = () => {
           onBlur={() => {
             setPasswordDitryError(true);
           }}
+          disabled={isPending}
         />
         {!passwordError && passwordDitryError && <p className={_.error}>Сообщение об ошибке</p>}
       </div>
@@ -99,11 +104,16 @@ export const Form = () => {
         </label>
       </div>
 
-      <button 
-        className={_.submit} 
-        type='submit'>
-        Войти
-      </button>
+      {isPending ? (<p className={_.pending}>Отправка</p>) :
+        (<button 
+          className={_.submit} 
+          type='submit'>
+          Войти
+        </button>)        
+      }
+      {checkErrorForm && (!passwordError || !emailError) && (
+        <p className={_.errorSubmit}>Сообщение об ошибке</p>
+      )}
     </form>
   );
 };
