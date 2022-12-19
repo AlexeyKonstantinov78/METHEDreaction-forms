@@ -15,7 +15,7 @@ export const Form = () => {
   
 
   const validEmail = (value) => {
-    setEmailError(/^.+@.+\..+$/.test(value));
+    setEmailError(/^.+@.+\..+$/.test(value));    
   };
 
   const validPassword = (value) => {
@@ -36,8 +36,11 @@ export const Form = () => {
     event.preventDefault();
 
     if(!emailError || !passwordError) {
+      console.log(event);
       setErrBlur(true);
       setCheckErrorForm(true);
+      setEmailDitry(!validEmail(event.target[0].value));
+      setPasswordDitryError(!validPassword(event.target[1].value));
       return;
     }
 
