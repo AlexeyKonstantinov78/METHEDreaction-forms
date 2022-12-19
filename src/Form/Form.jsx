@@ -11,6 +11,7 @@ export const Form = () => {
   const [checkErrorForm, setCheckErrorForm] = useState(false);
   const [save, setSave] = useState(false);
   const [isPending, setIsPending] = useState(false);
+  const [onErrBlur, setErrBlur] = useState(false);
   
 
   const validEmail = (value) => {
@@ -35,6 +36,7 @@ export const Form = () => {
     event.preventDefault();
 
     if(!emailError || !passwordError) {
+      setErrBlur(true);
       setCheckErrorForm(true);
       return;
     }
@@ -65,7 +67,9 @@ export const Form = () => {
           value={email}
           onChange={handleEmail}
           onBlur={() => {
-            setEmailDitry(true);
+              if (onErrBlur) {
+                setEmailDitry(true);
+              }
             }} 
           disabled={isPending}
             />
@@ -83,7 +87,9 @@ export const Form = () => {
           value={password}
           onChange={handlePassword}
           onBlur={() => {
-            setPasswordDitryError(true);
+            if (onErrBlur) {
+              setPasswordDitryError(true);
+            }
           }}
           disabled={isPending}
         />
