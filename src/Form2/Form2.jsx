@@ -61,11 +61,11 @@ export const Form2 = () => {
       </div>
       <div className={_.wrapCheckbox}>
         <input className={_.checkbox} 
-          id='save'           
+          id='save2'           
           type='checkbox' 
-          {...register('save')}
+          {...register('save2')}
           />
-        <label className={_.labelCheckbox} htmlFor='save'>
+        <label className={_.labelCheckbox} htmlFor='save2'>
           Сохранить пароль
         </label>
       </div>
