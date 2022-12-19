@@ -34,7 +34,7 @@ export const Form = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if(!emailError && !passwordError) {
+    if(!emailError || !passwordError) {
       setCheckErrorForm(true);
       return;
     }
@@ -69,7 +69,7 @@ export const Form = () => {
             }} 
           disabled={isPending}
             />
-        {!emailError && emailDitry && <p className={_.error}>Сообщение об ошибке</p>}
+        {!emailError && emailDitry && <p className={_.error}>Не верный email</p>}
       </div>
       <div className={_.wrap}>
         <label className={_.label} htmlFor='password'>
@@ -87,7 +87,7 @@ export const Form = () => {
           }}
           disabled={isPending}
         />
-        {!passwordError && passwordDitryError && <p className={_.error}>Сообщение об ошибке</p>}
+        {!passwordError && passwordDitryError && <p className={_.error}>неверный пароль</p>}
       </div>
       <div className={_.wrapCheckbox}>
         <input 

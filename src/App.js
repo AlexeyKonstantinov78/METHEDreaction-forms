@@ -6,6 +6,7 @@ function App() {
   return (
     <div className="App-header">
       <Form />
+      
       <Form2 />
     </div>
   );
